@@ -1,11 +1,12 @@
-# Getting Started with Create React App
-
+# Getting Started with RaiderNav app
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+This is a Texas Tech University campus navigation app made for CS3366 project 2. 
 
 ## Step 1: Clone the repository
 
 ```
-git clone https://github.com/dulanipali/nav-app.git
+git clone https://github.com/dulanipali/RaiderNav.git
 ```
 
 ## Step 2: Install Dependencies
