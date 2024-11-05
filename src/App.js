@@ -10,14 +10,16 @@ console.log('Current environment:', process.env.NODE_ENV);
 
 function App() {
   return (
-    <Routes>
-      <Route path="/RaiderNav" element={<Home />} />
-      {/*<Route path="/map" element={<Map />} />*/}
-      <Route path="/BusSchedule" element={<BusSchedule />} />
-      <Route path="/dining" element={<DiningOptions />} />
-      <Route path="/faq" element={<Faq />} />
-      <Route path="/resources" element={<Resources />} />
-    </Routes>
+    <Router>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        {/*<Route path="/map" element={<Map />} />*/}
+        <Route path="/BusSchedule" element={<BusSchedule />} />
+        <Route path="/dining" element={<DiningOptions />} />
+        <Route path="/faq" element={<Faq />} />
+        <Route path="/resources" element={<Resources />} />
+      </Routes>
+    </Router>
   );
 }
 
