@@ -48,13 +48,13 @@ const Layout = ({ children }) => {
             <Drawer anchor="left" open={menuOpen} onClose={toggleMenu}>
                 <List>
                     <ListItem button onClick={() => navigate("/")}>
-                        <ListItemText primary="Home" />
+                        <ListItemText primary="Map" />
                     </ListItem>
                     {/*<ListItemText primary="Profile" />
                     </ListItem>*/}
-                    <ListItem button onClick={() => navigate("/map")}>
+                    {/*<ListItem button onClick={() => navigate("/map")}>
                         <ListItemText primary="Map" />
-                    </ListItem>
+                    </ListItem>*/}
                     <ListItem button onClick={() => navigate("/BusSchedule")}>
                         <ListItemText primary="Bus Schedule" />
                     </ListItem>
@@ -86,32 +86,39 @@ const Layout = ({ children }) => {
                 </Toolbar>
             </AppBar>*/}
             <AppBar flexDirection={'row'} display={'flex'} position="static" sx={{ backgroundColor: 'white', boxShadow: 'none' }}>
-                <Toolbar>
-                    <IconButton onClick={toggleMenu} >
+                <Toolbar sx={{ width: '100%', justifyContent: 'space-between', paddingX: 2 }}>
+                    <IconButton onClick={toggleMenu}>
                         <MenuIcon />
                     </IconButton>
-                    <Typography variant="h6" sx={{ color: 'black', flexGrow: 1, textAlign: "center" }}>
-                        RaiderNav
-                    </Typography>
-                    <img
-                        src={logo}
-                        style={{
-                            width: 40,
-                            height: 40,
-                        }}
-                    />
-                    <IconButton>
+
+                    <Box display="flex" alignItems="center" sx={{ flexGrow: 1, justifyContent: 'center' }}>
+                        <Typography variant="h6" sx={{ color: 'black', textAlign: 'center' }}>
+                            RaiderNav
+                        </Typography>
+                        <img
+                            src={logo}
+                            style={{
+                                width: 40,
+                                height: 40,
+                                marginLeft: 8 // adds a small space between the text and the logo
+                            }}
+                            alt="logo"
+                        />
+                    </Box>
+
+                    <IconButton onClick={() => navigate("/")} sx={{ marginRight: 6 }}>
                         <MapIcon />
                     </IconButton>
                 </Toolbar>
             </AppBar>
+
 
             {/* Main Content */}
             <Box sx={{ flexGrow: 1, overflowY: 'auto', display: 'flex', flexDirection: 'column', width: '100%' }}>
                 {children}
             </Box>
 
-            {/* Bottom Navigation */}
+            {/* Bottom Navigation 
             <BottomNavigation
                 value={navValue}
                 onChange={handleNavChange}
@@ -147,6 +154,7 @@ const Layout = ({ children }) => {
                     }}
                 />
             </BottomNavigation>
+            */}
         </Box>
     );
 };

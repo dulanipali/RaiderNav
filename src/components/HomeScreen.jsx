@@ -28,7 +28,7 @@ export const HomeScreen = () => {
         display="flex"
         flexDirection="column"
         alignItems="center"
-        padding={2}
+        paddingX={2}
         boxSizing="border-box"
         width="100vw"
         overflowX="hidden"
@@ -37,15 +37,21 @@ export const HomeScreen = () => {
           display="flex"
           flexDirection="column"
           alignItems="center"
-          height={374}
-          bgcolor="#d9d9d9"
+          //width={393}
+          height={'50vh'}
+          sx={{
+            backgroundImage: `url(${process.env.PUBLIC_URL}/static/img//Basemap_image.svg)`,
+            backgroundSize: 'contain',
+            //backgroundRepeat: 'no-repeat',
+            backgroundPosition: '50% 50%',
+          }}
           mb={3}
-          width="100vw"
-          maxWidth="100vw"
+          width="100%"
+          minWidth="100vw"
         >
           <Box
-            width="50%"
-            bgcolor="#d9d9d9"
+            width="60%"
+            //bgcolor="#d9d9d9"
             display="flex"
             flexDirection="column"
             alignItems="center"
@@ -83,10 +89,13 @@ export const HomeScreen = () => {
             variant="contained"
             onClick={() => handleNavigation("/dining")}
 
-            style={{
+            sx={{
               backgroundColor: "#660708",
               borderRadius: 50,
               height: 45,
+              '&:hover': {
+                backgroundColor: "#490506",
+              },
             }}
           >
             <Typography variant="button" style={{ color: "white" }}>
@@ -97,10 +106,13 @@ export const HomeScreen = () => {
             fullWidth
             variant="contained"
             onClick={() => handleNavigation("/BusSchedule")}
-            style={{
+            sx={{
               backgroundColor: "#a4161a",
               borderRadius: 50,
               height: 45,
+              '&:hover': {
+                backgroundColor: "#490506",
+              },
             }}
           >
             <Typography variant="button" style={{ color: "white" }}>
@@ -111,10 +123,13 @@ export const HomeScreen = () => {
             fullWidth
             variant="contained"
             onClick={() => handleNavigation("/faq")}
-            style={{
+            sx={{
               backgroundColor: "#ba181b",
               borderRadius: 50,
               height: 45,
+              '&:hover': {
+                backgroundColor: "#490506",
+              },
             }}
           >
             <Typography variant="button" style={{ color: "white" }}>
@@ -154,6 +169,12 @@ export const HomeScreen = () => {
                   marginBottom: 16,
                   padding: 16,
                   backgroundColor: "white",
+                }}
+                sx={{
+                  '&:hover': {
+                    elevation: 6,
+                    transform: "scale(1.01)",
+                  },
                 }}
               >
                 <Box flex={1}>
