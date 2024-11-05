@@ -10,7 +10,7 @@ console.log('Current environment:', process.env.NODE_ENV);
 
 function App() {
   return (
-    <Router>
+    <Router basename='/RaiderNav'>
       <Routes>
         <Route path="/" element={<Home />} />
         {/*<Route path="/map" element={<Map />} />*/}
