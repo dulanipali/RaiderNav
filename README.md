@@ -5,7 +5,7 @@ This is a Texas Tech University campus navigation app made for CS3366 project 2.
 
 This project was based on the Figma design at https://www.figma.com/design/sZRZYt4EK75xZ34KdrvPwj/RaiderNav?node-id=14-1376&t=1WIGmr8s3TdK701n-1
 
-The deployed link can be found at 
+The deployed link can be found at https://github.com/dulanipali/RaiderNav
 
 ## Step 1: Clone the repository
 
