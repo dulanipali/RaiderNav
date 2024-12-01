@@ -6,6 +6,9 @@ import {
   Paper,
   TextField,
   Typography,
+  List,
+  ListItem,
+  ListItemText
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import React, { useState } from "react";
@@ -14,6 +17,8 @@ import Layout from "./layout";
 export const HomeScreen = () => {
   // State for search input focus
   const [searchFocus, setSearchFocus] = useState(false);
+  const [searchQuery, setSearchQuery] = useState(""); // To store the user's input
+  const [suggestions, setSuggestions] = useState([]); // To store matching suggestions
 
   const navigate = useNavigate();
 
@@ -22,8 +27,77 @@ export const HomeScreen = () => {
     navigate(path);
   };
 
+  const popularServices = [
+    {
+      name: "Writing Center",
+      description: "Get help with your essays and academic papers.",
+      image: "/placeholder.svg?height=130&width=130",
+    },
+    {
+      name: "Food Pantry",
+      description: "Access to free food and essentials for students in need.",
+      image: "/placeholder.svg?height=130&width=130",
+    },
+  ];
+
+  // Example list of campus places
+  const campusPlaces = [
+    "Library",
+    "Dining Hall",
+    "Gym",
+    "Student Center",
+    "Computer Lab",
+    "Lecture Hall A",
+    "Lecture Hall B",
+    "Cafeteria",
+    "Campus Bookstore",
+    "Health Center",
+  ];
+
+  // Handle search input changes
+  const handleSearchChange = (e) => {
+    const value = e.target.value;
+    setSearchQuery(value);
+
+    if (value.length > 0) {
+      // Filter campus places to match the search query
+      const filteredSuggestions = campusPlaces.filter((place) =>
+        place.toLowerCase().includes(value.toLowerCase())
+      );
+      setSuggestions(filteredSuggestions);
+    } else {
+      setSuggestions([]); // Clear suggestions if the input is empty
+    }
+  };
+
+  // Handle selecting a suggestion
+  const handleSuggestionClick = (suggestion) => {
+    setSearchQuery(suggestion); // Set the search bar value to the clicked suggestion
+    setSuggestions([]); // Clear the suggestions list
+  };
+
+  // Handle closing the overlay when clicking outside
+  const handleOverlayClick = () => {
+    setSearchFocus(false);
+    setSuggestions([]); // Clear suggestions when focus is lost
+  };
+
   return (
     <Layout>
+      {/* Overlay effect */}
+      {searchFocus && (
+        <Box
+          position="fixed"
+          top={0}
+          left={0}
+          width="100vw"
+          height="100vh"
+          bgcolor="rgba(0, 0, 0, 0.5)" // Semi-transparent grey background
+          zIndex={1} // Layer above everything else
+          onClick={handleOverlayClick} // Close overlay on click
+        />
+      )}
+
       <Box
         display="flex"
         flexDirection="column"
@@ -37,13 +111,11 @@ export const HomeScreen = () => {
           display="flex"
           flexDirection="column"
           alignItems="center"
-          //width={393}
-          height={'50vh'}
+          height={"50vh"}
           sx={{
             backgroundImage: `url(${process.env.PUBLIC_URL}/static/img//Basemap_image.svg)`,
-            backgroundSize: 'contain',
-            //backgroundRepeat: 'no-repeat',
-            backgroundPosition: '50% 50%',
+            backgroundSize: "contain",
+            backgroundPosition: "50% 50%",
           }}
           mb={3}
           width="100%"
@@ -51,18 +123,22 @@ export const HomeScreen = () => {
         >
           <Box
             width="60%"
-            //bgcolor="#d9d9d9"
             display="flex"
             flexDirection="column"
             alignItems="center"
             padding={2}
             borderRadius={2}
             mb={3}
+            position="relative" // Position the search box above the overlay
+            zIndex={2} // Ensure it appears above the overlay
           >
             <TextField
               fullWidth
               variant="outlined"
               placeholder="Enter Location...."
+              value={searchQuery}
+              onChange={handleSearchChange}
+              onFocus={() => setSearchFocus(true)} // Show overlay on focus
               InputProps={{
                 startAdornment: (
                   <InputAdornment position="start">
@@ -72,6 +148,32 @@ export const HomeScreen = () => {
                 style: { borderRadius: 50, backgroundColor: "white" },
               }}
             />
+            {/* Suggestions dropdown */}
+            {suggestions.length > 0 && (
+              <Paper
+                style={{
+                  position: "absolute",
+                  top: "100%",
+                  left: 0,
+                  width: "100%",
+                  zIndex: 3,
+                  maxHeight: "150px",
+                  overflowY: "auto",
+                }}
+              >
+                <List>
+                  {suggestions.map((suggestion, index) => (
+                    <ListItem
+                      button
+                      key={index}
+                      onClick={() => handleSuggestionClick(suggestion)}
+                    >
+                      <ListItemText primary={suggestion} />
+                    </ListItem>
+                  ))}
+                </List>
+              </Paper>
+            )}
           </Box>
         </Box>
 
@@ -88,12 +190,11 @@ export const HomeScreen = () => {
             fullWidth
             variant="contained"
             onClick={() => handleNavigation("/dining")}
-
             sx={{
               backgroundColor: "#660708",
               borderRadius: 50,
               height: 45,
-              '&:hover': {
+              "&:hover": {
                 backgroundColor: "#490506",
               },
             }}
@@ -110,7 +211,7 @@ export const HomeScreen = () => {
               backgroundColor: "#a4161a",
               borderRadius: 50,
               height: 45,
-              '&:hover': {
+              "&:hover": {
                 backgroundColor: "#490506",
               },
             }}
@@ -127,7 +228,7 @@ export const HomeScreen = () => {
               backgroundColor: "#ba181b",
               borderRadius: 50,
               height: 45,
-              '&:hover': {
+              "&:hover": {
                 backgroundColor: "#490506",
               },
             }}
@@ -158,9 +259,9 @@ export const HomeScreen = () => {
             Popular Campus Services
           </Typography>
           <Box width="90%" marginBottom={2}>
-            {["Writing Center", "Food Pantry"].map((service) => (
+            {popularServices.map((service) => (
               <Paper
-                key={service}
+                key={service.name}
                 elevation={3}
                 style={{
                   display: "flex",
@@ -171,7 +272,7 @@ export const HomeScreen = () => {
                   backgroundColor: "white",
                 }}
                 sx={{
-                  '&:hover': {
+                  "&:hover": {
                     elevation: 6,
                     transform: "scale(1.01)",
                   },
@@ -179,15 +280,21 @@ export const HomeScreen = () => {
               >
                 <Box flex={1}>
                   <Typography variant="h6" color="#660708">
-                    {service}
+                    {service.name}
                   </Typography>
                   <Typography variant="body1" color="black">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    {service.description}
                   </Typography>
                 </Box>
-                <Box width={130} height={130} bgcolor="#242323" border="1px solid white">
+                <Box
+                  width={130}
+                  height={130}
+                  bgcolor="#242323"
+                  border="1px solid white"
+                >
                   <img
-                    alt={`${service} Image`}
+                    src={service.image}
+                    alt={`${service.name} Image`}
                     style={{
                       width: "100%",
                       height: "100%",

@@ -43,7 +43,7 @@ const Layout = ({ children }) => {
     };
 
     return (
-        <Box sx={{ display: 'flex', flexDirection: 'column', minHeight: '100vh', overflow: 'hidden' }}>
+        <Box sx={{ display: 'flex', flexDirection: 'column', minHeight: '100vh', overflow: 'hidden', maxWidth: '100vw' }}>
             {/* Drawer for the Menu */}
             <Drawer anchor="left" open={menuOpen} onClose={toggleMenu}>
                 <List>
@@ -114,7 +114,7 @@ const Layout = ({ children }) => {
 
 
             {/* Main Content */}
-            <Box sx={{ flexGrow: 1, overflowY: 'auto', display: 'flex', flexDirection: 'column', width: '100%' }}>
+            <Box sx={{ flexGrow: 1, overflowY: 'auto', display: 'flex', flexDirection: 'column', width: '100vw' }}>
                 {children}
             </Box>
 
