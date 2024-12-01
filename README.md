@@ -7,6 +7,8 @@ This project was based on the Figma design at https://www.figma.com/design/sZRZY
 
 The deployed link can be found at https://github.com/dulanipali/RaiderNav
 
+This is main designed for a mobile phone and a seperate web version is being designed. To view the mobile view, simply reduce the width of the window or right click on the website-> inspect -> toggle device tool bar -> select mobile view
+
 ## Step 1: Clone the repository
 
 ```
