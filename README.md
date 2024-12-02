@@ -8,7 +8,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 This is the final Texas Tech University campus navigation app made for CS3366 project 2.
 
-The deployed link can be found at https://github.com/dulanipali/RaiderNav
+The deployed link can be found at https://dulanipali.github.io/RaiderNav/
 
 This is main designed for a mobile phone and a seperate web version is being designed. To view the mobile view, simply reduce the width of the window or right click on the website-> inspect -> toggle device tool bar -> select mobile view
 
