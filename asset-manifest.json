@@ -1,16 +1,16 @@
 {
   "files": {
     "main.css": "/RaiderNav/static/css/main.a651e20c.css",
-    "main.js": "/RaiderNav/static/js/main.86108008.js",
+    "main.js": "/RaiderNav/static/js/main.4f2160e2.js",
     "static/js/453.99dcf01f.chunk.js": "/RaiderNav/static/js/453.99dcf01f.chunk.js",
     "static/media/logo.svg": "/RaiderNav/static/media/logo.a7d89fe3b99a0afbb316baf736dcdfd0.svg",
     "index.html": "/RaiderNav/index.html",
     "main.a651e20c.css.map": "/RaiderNav/static/css/main.a651e20c.css.map",
-    "main.86108008.js.map": "/RaiderNav/static/js/main.86108008.js.map",
+    "main.4f2160e2.js.map": "/RaiderNav/static/js/main.4f2160e2.js.map",
     "453.99dcf01f.chunk.js.map": "/RaiderNav/static/js/453.99dcf01f.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.a651e20c.css",
-    "static/js/main.86108008.js"
+    "static/js/main.4f2160e2.js"
   ]
 }
