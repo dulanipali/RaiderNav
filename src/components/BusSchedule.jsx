@@ -100,12 +100,13 @@ const BusSchedule = () => {
             component="div"
             mb={'20px'}
             //top={99}
-            //left={42}
+            ml={'20px'}
             sx={{
               fontFamily: 'Roboto, Helvetica', fontWeight: 'normal'
             }}
-          >            <DirectionsBusIcon sx={{ mr: 1 }} />
+          >
             Bus Schedule
+            {/* <DirectionsBusIcon sx={{ mr: 1 }} /> */}
           </Typography>
 
           <Grid container spacing={4}>

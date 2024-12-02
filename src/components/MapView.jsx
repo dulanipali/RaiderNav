@@ -12,17 +12,50 @@ const locations = [
   {
     id: 1,
     name: "Commons",
+    open: "Mon - Thu | 11 am - 10 pm, Fri & Sat | 11 am - 8 pm, Sun | 11 am - 10 pm",
     coordinates: [-101.87395876405218, 33.57972144641611],
   },
   {
     id: 2,
     name: "Sneed",
+    open: "Mon - Fri | 7 am - 10 pm, Sat & Sun | 9 am - 9 pm",
     coordinates: [-101.87136622161312, 33.58559986838839],
   },
   {
     id: 3,
+    name: "Sub food court",
+    open: "Mon - Fri | 9am - 4pm",
+    coordinates: [- 101.87479387179201, 33.58131311998538],
+  },
+  {
+    id: 4,
     name: "Wiggins",
-    coordinates: [-101.88367560321792, 33.57990305976761],
+    open: "Mon - Sat | 10:30am - 10:00pm",
+    coordinates: [-101.88364237345277, 33.57972966735108],
+  },
+  {
+    id: 5,
+    name: "The Market",
+    open: "Mon - Thu | 7 am - 11 pm, Fri | 7 am - 8 pm, Sat | 11 am - 8 pm, Sun | 11 am - 9 pm",
+    coordinates: [-101.88033853696706, 33.583701118161045],
+  },
+  {
+    id: 6,
+    name: "Chick-Fil-A Rawls",
+    open: "Mon - Fri | 10:30am - 9:00pm, Sat | 11:00am - 7:00pm",
+    coordinates: [-101.87989367534837, 33.58754360323075],
+  },
+  {
+    id: 7,
+    name: "Sam's Express",
+    open: "Mon - Thu | 8 am - 4 pm, Fri | 8 am - 1 pm",
+    coordinates: [-101.87372124609917, 33.58572374437906],
+  },
+  {
+    id: 8,
+    name: "Sam's Express",
+    open: "Mon - Thu | 8 am - 4 pm, Fri | 8 am - 1 pm",
+    coordinates: [-101.87614805330712, 33.581509132053384],
   },
 ];
 
@@ -43,7 +76,18 @@ const MapWithSearch = () => {
 
     // Add markers for locations
     locations.forEach((location) => {
-      new mapboxgl.Marker().setLngLat(location.coordinates).addTo(mapRef.current);
+      const marker = new mapboxgl.Marker().setLngLat(location.coordinates).addTo(mapRef.current);
+      // Create a popup for each marker
+      const popup = new mapboxgl.Popup({ offset: 25 })
+        .setHTML(`<h3>${location.name}</h3><p>${location.open}</p>`);
+
+      // Attach the popup to the marker
+      marker.setPopup(popup);
+
+      // Optional: Open the popup on marker click
+      marker.getElement().addEventListener('click', () => {
+        popup.addTo(mapRef.current);
+      });
     });
 
     const geocoder = new MapboxGeocoder({

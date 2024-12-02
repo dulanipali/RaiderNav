@@ -9,6 +9,11 @@ import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import MapIcon from "@mui/icons-material/Map";
 import logo from './logo.svg'
+import RestaurantIcon from "@mui/icons-material/Restaurant";
+import DirectionsBusIcon from "@mui/icons-material/DirectionsBus";
+import HelpIcon from "@mui/icons-material/Help";
+import SchoolIcon from "@mui/icons-material/School";
+import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 
 const Layout = ({ children }) => {
     // State for bottom navigation
@@ -30,7 +35,7 @@ const Layout = ({ children }) => {
                 window.location.href = "https://www.depts.ttu.edu/housing/campus-map.pdf";
                 break;
             case 2:
-                navigate("/resources");
+                navigate("/");
                 break;
             default:
                 break;
@@ -48,13 +53,14 @@ const Layout = ({ children }) => {
             <Drawer anchor="left" open={menuOpen} onClose={toggleMenu}>
                 <List>
                     <ListItem button onClick={() => navigate("/")}>
-                        <ListItemText primary="Map" />
+                        <ListItemText primary="Home" />
                     </ListItem>
-                    {/*<ListItemText primary="Profile" />
-                    </ListItem>*/}
-                    {/*<ListItem button onClick={() => navigate("/map")}>
-                        <ListItemText primary="Map" />
-                    </ListItem>*/}
+                    <ListItem button onClick={() => navigate("/directions")}>
+                        <ListItemText primary="Directions" />
+                    </ListItem>
+                    <ListItem button onClick={() => navigate("/buildinginfo")}>
+                        <ListItemText primary="Building Info" />
+                    </ListItem>
                     <ListItem button onClick={() => navigate("/services")}>
                         <ListItemText primary="Services" />
                     </ListItem>
@@ -67,27 +73,9 @@ const Layout = ({ children }) => {
                     <ListItem button onClick={() => navigate("/faq")}>
                         <ListItemText primary="FAQ" />
                     </ListItem>
-                    {/*<ListItem button onClick={() => navigate("/settings")}>
-                        <ListItemText primary="Settings" />
-                    </ListItem>*/}
                 </List>
             </Drawer>
 
-            {/* App Bar */}
-            {/*<AppBar position="static" sx={{ backgroundColor: 'white', boxShadow: 'none' }}>
-                <Toolbar>
-                    <IconButton onClick={toggleMenu}>
-                        <MenuIcon />
-                    </IconButton>
-                    <Typography variant="h6" sx={{ flexGrow: 1, textAlign: 'center' }}>
-                        <span style={{ color: 'black' }}>Tech</span>
-                        <span style={{ color: '#f31010' }}>Nav</span>
-                    </Typography>
-                    <IconButton>
-                        <NotificationsIcon />
-                    </IconButton>
-                </Toolbar>
-            </AppBar>*/}
             <AppBar flexDirection={'row'} display={'flex'} position="static" sx={{ backgroundColor: 'white', boxShadow: 'none' }}>
                 <Toolbar sx={{ width: '100%', justifyContent: 'space-between', paddingX: 2 }}>
                     <IconButton onClick={toggleMenu}>
@@ -121,43 +109,43 @@ const Layout = ({ children }) => {
                 {children}
             </Box>
 
-            {/* Bottom Navigation 
-            <BottomNavigation
-                value={navValue}
-                onChange={handleNavChange}
-                showLabels
-                sx={{
-                    backgroundColor: 'white',
-                    width: '100vw',
-                    position: 'fixed',  // Fixed positioning
-                    bottom: 0,  // Stick to the bottom
-                    left: 0,    // Ensure full width
-                    right: 0
-                }}
-            >
-                <BottomNavigationAction
-                    label="Explore"
-                    icon={<ExploreIcon />}
-                    sx={{
-                        color: navValue === 0 ? '#fed8d8' : '#1d1b20',
-                    }}
-                />
-                <BottomNavigationAction
-                    label="Buildings"
-                    icon={<SaveIcon />}
-                    sx={{
-                        color: navValue === 1 ? '#fed8d8' : '#49454f',
-                    }}
-                />
-                <BottomNavigationAction
-                    label="Resources"
-                    icon={<BookIcon />}
-                    sx={{
-                        color: navValue === 2 ? '#fed8d8' : '#49454f',
-                    }}
-                />
-            </BottomNavigation>
-            */}
+            {/* Bottom Navigation
+<BottomNavigation
+    value={navValue}
+    onChange={handleNavChange}
+    showLabels
+    sx={{
+        backgroundColor: 'white',
+        width: '100vw',
+        position: 'fixed',  // Fixed positioning
+        bottom: 0,  // Stick to the bottom
+        left: 0,    // Ensure full width
+        right: 0
+    }}
+>
+    <BottomNavigationAction
+        label="Explore"
+        icon={<ExploreIcon />}
+        sx={{
+            color: navValue === 0 ? '#fed8d8' : '#1d1b20',
+        }}
+    />
+    <BottomNavigationAction
+        label="Services"
+        icon={<SchoolIcon />}
+        sx={{
+            color: navValue === 2 ? '#fed8d8' : '#49454f',
+        }}
+    />
+    <BottomNavigationAction
+        label="More"
+        icon={<MoreHorizIcon />}
+        sx={{
+            color: navValue === 1 ? '#fed8d8' : '#49454f',
+        }}
+    />
+</BottomNavigation> */}
+
         </Box>
     );
 };
