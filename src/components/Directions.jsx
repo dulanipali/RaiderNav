@@ -5,6 +5,7 @@ import MapboxDirections from "@mapbox/mapbox-gl-directions/dist/mapbox-gl-direct
 import { MapboxStyleSwitcherControl } from "mapbox-gl-style-switcher";
 import "mapbox-gl-style-switcher/styles.css";
 import "@mapbox/mapbox-gl-directions/dist/mapbox-gl-directions.css";
+import Layout from "./layout";
 
 mapboxgl.accessToken = "pk.eyJ1IjoiZHBhbGloYXAiLCJhIjoiY20zZmJrazF1MG9kbDJrb20wNWY3dDh2aiJ9.lq28a_QkzTTzklqoo7R6Jw";
 
@@ -52,35 +53,37 @@ const MapWithDirections = () => {
     }, []);
 
     return (
-        <div>
-            {/* Instruction Box */}
-            {showInstructions && (
-                <div
-                    ref={instructionBoxRef}
-                    style={{
-                        position: "absolute",
-                        top: "10px",
-                        left: "10px",
-                        backgroundColor: "rgba(255, 255, 255, 0.9)",
-                        padding: "10px",
-                        borderRadius: "5px",
-                        zIndex: 1000,
-                        boxShadow: "0px 2px 5px rgba(0, 0, 0, 0.2)",
-                    }}
-                >
-                    <p style={{ margin: 0, fontSize: "14px", fontWeight: "bold" }}>
-                        Instructions:
-                    </p>
-                    <p style={{ margin: "5px 0 0 0", fontSize: "12px" }}>
-                        Please type <strong>"TTU"</strong> in the origin and destination
-                        fields to begin.
-                    </p>
-                </div>
-            )}
+        <Layout>
+            <div>
+                {/* Instruction Box */}
+                {showInstructions && (
+                    <div
+                        ref={instructionBoxRef}
+                        style={{
+                            position: "absolute",
+                            top: "10px",
+                            left: "10px",
+                            backgroundColor: "rgba(255, 255, 255, 0.9)",
+                            padding: "10px",
+                            borderRadius: "5px",
+                            zIndex: 1000,
+                            boxShadow: "0px 2px 5px rgba(0, 0, 0, 0.2)",
+                        }}
+                    >
+                        <p style={{ margin: 0, fontSize: "14px", fontWeight: "bold" }}>
+                            Instructions:
+                        </p>
+                        <p style={{ margin: "5px 0 0 0", fontSize: "12px" }}>
+                            Please type <strong>"TTU"</strong> in the origin and destination
+                            fields to begin.
+                        </p>
+                    </div>
+                )}
 
-            {/* Map Container */}
-            <div ref={mapContainerRef} style={{ width: "100%", height: "100vh" }} />
-        </div>
+                {/* Map Container */}
+                <div ref={mapContainerRef} style={{ width: "100%", height: "100vh" }} />
+            </div>
+        </Layout>
     );
 };
 

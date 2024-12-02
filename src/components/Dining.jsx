@@ -68,6 +68,8 @@ const Dining = () => {
     const mapRef = useRef(null);
     const [showDirections, setShowDirections] = useState(false);
     const [selectedLocation, setSelectedLocation] = useState(null);
+    const instructionBoxRef = useRef(null);
+    const [showInstructions, setShowInstructions] = useState(true);
 
     const navigate = useNavigate();
 
@@ -135,6 +137,17 @@ const Dining = () => {
         }
     };
 
+    // Click outside listener for instructions box
+    const handleClickOutside = (event) => {
+        if (
+            instructionBoxRef.current &&
+            !instructionBoxRef.current.contains(event.target)
+        ) {
+            setShowInstructions(false); // Hide instructions if clicked outside
+        }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+
     return (
         <Layout>
             <Box display="flex"
@@ -161,6 +174,29 @@ const Dining = () => {
                         </Typography>
                     </Box>
                     <div>
+                        {showInstructions && (
+                            <div
+                                ref={instructionBoxRef}
+                                style={{
+                                    position: "absolute",
+                                    top: "160px",
+                                    left: "10px",
+                                    backgroundColor: "rgba(255, 255, 255, 0.9)",
+                                    padding: "10px",
+                                    borderRadius: "5px",
+                                    zIndex: 1000,
+                                    boxShadow: "0px 2px 5px rgba(0, 0, 0, 0.2)",
+                                }}
+                            >
+                                <p style={{ margin: 0, fontSize: "14px", fontWeight: "bold" }}>
+                                    Instructions:
+                                </p>
+                                <p style={{ margin: "5px 0 0 0", fontSize: "12px" }}>
+                                    Please type <strong>"TTU"</strong> in the origin and destination
+                                    fields to begin.
+                                </p>
+                            </div>
+                        )}
                         {/* Map Container */}
                         <div
                             ref={mapContainerRef}
